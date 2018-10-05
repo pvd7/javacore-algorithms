@@ -11,6 +11,26 @@ public class ArrayTest {
         Array expected1 = new Array(0, 1, 2, 3, 5, 5, 6, 43);
         actual1.sortBubble();
         Assert.assertEquals(expected1.toString(), actual1.toString());
+
+        Array actual2 = new Array(4, 5, 0, 7, 7, 7, 7, 7, 7);
+        Array expected2 = new Array(0, 4, 5, 7, 7, 7, 7, 7, 7);
+        actual2.sortBubble();
+        Assert.assertEquals(expected2.toString(), actual2.toString());
+
+        Array actual3 = new Array(9, 8, 7, 6, 5, 4, 3, 2, 1, 0);
+        Array expected3 = new Array(0, 1, 2, 3, 4, 5, 6, 7, 8, 9);
+        actual3.sortBubble();
+        Assert.assertEquals(expected3.toString(), actual3.toString());
+
+        Array actual4 = new Array();
+        Array expected4 = new Array();
+        actual4.sortBubble();
+        Assert.assertEquals(expected4.toString(), actual4.toString());
+
+        Array actual5 = new Array(6,7,4,3);
+        Array expected5 = new Array(1);
+        actual5.sortBubble();
+        Assert.assertNotEquals(expected5.toString(), actual5.toString());
     }
 
     @Test
