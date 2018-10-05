@@ -165,7 +165,7 @@ public class Array {
     public void sortBubble() {
         boolean isSwapped = false;
         for (int i = 0; i < size; i++) {
-            for (int j = 0; j < size - 1; j++) {
+            for (int j = 0; j < size - i - 1; j++) {
                 if (arr[j] > arr[j + 1]) {
                     swap(j, j + 1);
                     isSwapped = true;
