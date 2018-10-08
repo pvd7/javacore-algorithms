@@ -1,4 +1,4 @@
-package ru.javacore2.algorithm.lesson3;
+package ru.javacore2.algorithm.lesson3.example;
 
 public class Stack {
     private int[] stack;
