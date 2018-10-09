@@ -74,7 +74,7 @@ public class Deque {
     /**
      * Удаляет элемент с конца очереди
      *
-     * @return значение
+     * @return значение удаленного элемента
      */
     public Object removeTail() {
         if (isEmpty()) return null;
@@ -97,7 +97,7 @@ public class Deque {
     /**
      * Удаляет элемент с начала очереди
      *
-     * @return
+     * @return значение удаленного элемента
      */
     public Object removeHead() {
         if (isEmpty()) return null;
@@ -139,7 +139,7 @@ public class Deque {
     /**
      * Возвращате количество элементов в очереди
      *
-     * @return
+     * @return количество
      */
     public int length() {
         return size;
