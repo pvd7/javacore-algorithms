@@ -9,11 +9,11 @@ package ru.javacore2.algorithm.lesson3.util;
 public class PriorityQueue {
 
     // элемент очереди
-    class EntityQueue {
+    class Node {
         Object value; // значение
-        EntityQueue next; // указатель на следующий элемент
+        Node next; // указатель на следующий элемент
 
-        EntityQueue(Object value) {
+        Node(Object value) {
             this.value = value;
         }
     }
@@ -21,18 +21,24 @@ public class PriorityQueue {
     // количество приоритетов, определяет размер массивов конца и начала очередей
     private int lengthPriority = Priority.values().length;
     // массив начала очередей
-    private EntityQueue[] headQueue = new EntityQueue[lengthPriority];
+    private Node[] headQueue = new Node[lengthPriority];
     // массив коца очередей
-    private EntityQueue[] tailQueue = new EntityQueue[lengthPriority];
+    private Node[] tailQueue = new Node[lengthPriority];
     // массив размеров очередей
     private int[] sizeQueue = new int[lengthPriority];
 
     public PriorityQueue() {
     }
 
+    /**
+     * Добавляет элемент в очередь
+     *
+     * @param value    значение
+     * @param priority приоритет
+     */
     public void add(Object value, Priority priority) {
         int i = priority.ordinal();
-        EntityQueue entity = new EntityQueue(value);
+        Node entity = new Node(value);
         if (sizeQueue[i] == 0) {
             tailQueue[i] = entity;
             headQueue[i] = tailQueue[i];
@@ -43,17 +49,34 @@ public class PriorityQueue {
         sizeQueue[i]++;
     }
 
+    /**
+     * Добавляет элемент в очередь
+     * приоритет = Priority.NORMAL
+     *
+     * @param value значение
+     */
     public void add(Object value) {
         add(value, Priority.NORMAL);
     }
 
-    private int getQueuePriority(){
-        for (int i = lengthPriority - 1; i >= 0 ; i--)
+    /**
+     * Возваращет интекс из массива очередей, где есть элементы
+     * просмотр приоритетов справа налево
+     *
+     * @return
+     */
+    private int getQueuePriority() {
+        for (int i = lengthPriority - 1; i >= 0; i--)
             if (sizeQueue[i] > 0)
                 return i;
-       return -1;
+        return -1;
     }
 
+    /**
+     * Возвращает элемент из начала очереди
+     *
+     * @return значение
+     */
     public Object peek() {
         int i = getQueuePriority();
         return (i > -1 ? headQueue[i].value : null);
@@ -64,6 +87,11 @@ public class PriorityQueue {
 //        return (sizeQueue[i] > 0 ? headQueue[i].value : null);
 //    }
 
+    /**
+     * Удаляет элемент из начала очереди
+     *
+     * @return значение
+     */
     public Object remove() {
         Object obj = null;
         int i = getQueuePriority();
@@ -75,6 +103,11 @@ public class PriorityQueue {
         return obj;
     }
 
+    /**
+     * Длина все очереди
+     *
+     * @return длина
+     */
     public int length() {
         int length = 0;
         for (int i = 0; i < lengthPriority; i++) {
@@ -83,11 +116,23 @@ public class PriorityQueue {
         return length;
     }
 
+    /**
+     * Количество элементов из массива очередей (в порядке убывания приоритета), где есть есть хоть один элемент
+     * если нигдле нет элементов то вернет 0
+     *
+     * @return количество элементов
+     */
     public int lengthQueue() {
         int i = getQueuePriority();
         return (i > -1 ? sizeQueue[i] : 0);
     }
 
+    /**
+     * Количество элементов в очереди с указанным приоритетом
+     *
+     * @param priority приоритет
+     * @return количество
+     */
     public int lengthQueue(Priority priority) {
         return sizeQueue[priority.ordinal()];
     }
