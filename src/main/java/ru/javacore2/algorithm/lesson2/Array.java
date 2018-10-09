@@ -225,7 +225,7 @@ public class Array {
         int count;
         Map<Integer, Integer> hashMap = new HashMap<>();
         for (int i = 0; i < size; i++) {
-            count = hashMap.getOrDefault(arr[i],0);
+            count = hashMap.getOrDefault(arr[i], 0);
             hashMap.put(arr[i], count + 1);
         }
 
