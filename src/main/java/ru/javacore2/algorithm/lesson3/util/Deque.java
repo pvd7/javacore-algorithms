@@ -36,10 +36,7 @@ public class Deque {
     }
 
     public Deque(int... args) {
-        int len = args.length;
-        if (len > 0) {
-            for (int i = 0; i < len; i++) addTail((args[i]));
-        }
+        for (int arg : args) addTail((arg));
     }
 
     /**
