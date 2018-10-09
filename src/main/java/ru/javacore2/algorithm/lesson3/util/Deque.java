@@ -28,8 +28,11 @@ public class Deque {
         }
     }
 
+    // количество элементов в списке
     private int size = 0;
+    // голова - первый элемент в списке
     private Node head = null;
+    // хвост - последний элемент в списке
     private Node tail = null;
 
     public Deque() {
