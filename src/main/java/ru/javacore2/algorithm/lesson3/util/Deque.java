@@ -5,29 +5,6 @@ package ru.javacore2.algorithm.lesson3.util;
  */
 public class Deque {
 
-    // узел очереди
-    class Node {
-        Object value; // значение
-        Node prev; // указатель на предидущий узел
-        Node next; // указатель на следующий узел
-
-        Node(Object value) {
-            this.value = value;
-        }
-
-        public Node(Object value, Node prev, Node next) {
-            this.value = value;
-            this.prev = prev;
-            this.next = next;
-        }
-
-        public Node remove() {
-            if (prev != null) prev.next = next;
-            if (next != null) next.prev = prev;
-            return this;
-        }
-    }
-
     // количество элементов в списке
     private int size = 0;
     // голова - первый элемент в списке
