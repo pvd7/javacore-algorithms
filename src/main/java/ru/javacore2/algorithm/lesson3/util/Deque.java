@@ -21,7 +21,7 @@ public class Deque {
             this.next = next;
         }
 
-        public Node Remove() {
+        public Node remove() {
             if (prev != null) prev.next = next;
             if (next != null) next.prev = prev;
             return this;
@@ -83,7 +83,7 @@ public class Deque {
         if (isEmpty()) return null;
         size--;
         Node node = tail;
-        tail = tail.Remove().prev;
+        tail = tail.remove().prev;
         return node.value;
     }
 
@@ -106,7 +106,7 @@ public class Deque {
         if (isEmpty()) return null;
         size--;
         Node node = head;
-        head = head.Remove().next;
+        head = head.remove().next;
         return node.value;
     }
 
