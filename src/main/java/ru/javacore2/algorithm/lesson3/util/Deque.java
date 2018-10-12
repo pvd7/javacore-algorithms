@@ -1,12 +1,12 @@
 package ru.javacore2.algorithm.lesson3.util;
 
+import java.util.Iterator;
+
 /**
  * Двухсторонняя очередь
  */
-public class Deque {
+public class Deque implements Iterable<Node> {
 
-    // количество элементов в списке
-    private int size = 0;
     // голова - первый элемент в списке
     private Node head = null;
     // хвост - последний элемент в списке
@@ -32,7 +32,6 @@ public class Deque {
             tail.next = new Node(value, tail, null);
             tail = tail.next;
         }
-        size++;
     }
 
     /**
@@ -40,7 +39,7 @@ public class Deque {
      *
      * @param value значени
      */
-    public void addHead(Object value) {
+    public Node addHead(Object value) {
         if (isEmpty()) {
             head = new Node(value);
             tail = head;
@@ -48,7 +47,7 @@ public class Deque {
             head.prev = new Node(value, null, head);
             head = head.prev;
         }
-        size++;
+        return head;
     }
 
     /**
@@ -58,7 +57,6 @@ public class Deque {
      */
     public Object removeTail() {
         if (isEmpty()) return null;
-        size--;
         Node node = tail;
         tail = tail.remove().prev;
         return node.value;
@@ -81,7 +79,6 @@ public class Deque {
      */
     public Object removeHead() {
         if (isEmpty()) return null;
-        size--;
         Node node = head;
         head = head.remove().next;
         return node.value;
@@ -104,25 +101,15 @@ public class Deque {
      */
 
     public boolean isEmpty() {
-        return size == 0;
+        return (head == null) && (tail == null);
     }
 
     /**
      * Очищает очередь
      */
     public void clear() {
-        size = 0;
         head = null;
         tail = null;
-    }
-
-    /**
-     * Возвращате количество элементов в очереди
-     *
-     * @return количество
-     */
-    public int length() {
-        return size;
     }
 
     @Override
@@ -138,4 +125,18 @@ public class Deque {
         str.append("]");
         return str.toString();
     }
+
+    @Override
+    public Iterator iterator() {
+        return new DequeIterator(this);
+    }
+
+    public Node getHead() {
+        return head;
+    }
+
+    public Node getTail() {
+        return tail;
+    }
+
 }
