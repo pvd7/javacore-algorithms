@@ -99,15 +99,4 @@ public class DequeTest {
         Assert.assertTrue(deque.isEmpty());
     }
 
-    @Test
-    public void length() {
-        Deque deque = new Deque(1, 3, 4, 5);
-        Assert.assertEquals(4, deque.length());
-        deque.addHead(1);
-        Assert.assertEquals(5, deque.length());
-        deque.removeHead();
-        Assert.assertEquals(4, deque.length());
-        deque.clear();
-        Assert.assertEquals(0, deque.length());
-    }
 }
