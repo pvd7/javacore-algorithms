@@ -15,12 +15,8 @@ public class Math {
         if (power == 0) return 1.0;
         if (power == 1) return value;
         if (power == 2) return value * value;
-
-        if (power % 2 == 0) {
-            return pow(value * value, power / 2);
-        } else {
-            return pow(value * value, power / 2) * value;
-        }
+        double result = pow(value * value, power / 2);
+        return (power % 2) == 0 ? result : result * value;
     }
 
 }
