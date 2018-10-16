@@ -41,7 +41,7 @@ public class TowerHanoi {
      *
      * @param n количство дисков
      */
-    private static void moveFor(int n) {
+        private static void moveLoop(int n) {
         // штырь 1
         Stack<Integer> a = new Stack<>();
         // штырь 2
@@ -102,7 +102,7 @@ public class TowerHanoi {
         System.out.println();
         System.out.println("Циклическое решение");
         step = 0;
-        moveFor(n);
+        moveLoop(n);
     }
 
 }
