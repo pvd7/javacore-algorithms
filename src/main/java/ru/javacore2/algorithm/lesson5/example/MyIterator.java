@@ -1,4 +1,4 @@
-package ru.javacore2.algorithm.lesson1.example;
+package ru.javacore2.algorithm.lesson5.example;
 
 import java.util.Iterator;
 
