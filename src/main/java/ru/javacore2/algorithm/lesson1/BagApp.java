@@ -1,4 +1,4 @@
-package ru.javacore2.algorithm.lesson5;
+package ru.javacore2.algorithm.lesson1;
 
 /**
  * Пример задачи о ранце: необходимо уложить коробки в ранец вместимостью 15 кг так, чтобы стоимость уложенных коробок была максимальной

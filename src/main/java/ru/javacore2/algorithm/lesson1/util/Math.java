@@ -1,4 +1,4 @@
-package ru.javacore2.algorithm.lesson5.util;
+package ru.javacore2.algorithm.lesson1.util;
 
 public class Math {
 
