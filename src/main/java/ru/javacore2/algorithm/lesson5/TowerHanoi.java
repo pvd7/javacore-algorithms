@@ -1,4 +1,4 @@
-package ru.javacore2.algorithm.lesson1;
+package ru.javacore2.algorithm.lesson5;
 
 import java.util.Stack;
 
