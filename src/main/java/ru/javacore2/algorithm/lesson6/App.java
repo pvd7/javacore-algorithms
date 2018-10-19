@@ -17,7 +17,7 @@ public class App {
                 tree.insert((int) (Math.random() * 100));
             }
 
-
+            System.out.printf("%3d min: %3d, max: %3d, balanced: %b \n", i, tree.getMin(), tree.getMax(), tree.isBalanced());
         }
     }
 
