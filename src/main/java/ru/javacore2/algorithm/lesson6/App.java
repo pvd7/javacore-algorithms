@@ -9,7 +9,7 @@ public class App {
         Tree[] trees = new Tree[len];
 
         Tree tree;
-        int size = 100;
+        int size = 10;
         for (int i = 0; i < len; i++) {
             tree = new Tree();
             trees[i] = tree;
@@ -17,7 +17,7 @@ public class App {
                 tree.insert((int) (Math.random() * 100));
             }
 
-            System.out.printf("%3d min: %3d, max: %3d, balanced: %b \n", i, tree.getMin(), tree.getMax(), tree.isBalanced());
+            System.out.printf("%3d min: %3d, max: %3d, balanced: %b, depth: %2d \n", i, tree.getMin(), tree.getMax(), tree.isBalanced(), tree.depth());
         }
     }
 

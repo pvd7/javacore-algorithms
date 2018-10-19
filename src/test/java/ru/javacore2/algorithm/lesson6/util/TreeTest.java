@@ -20,7 +20,7 @@ public class TreeTest {
         tree.insert(4);
         Assert.assertFalse(tree.isBalanced());
         tree.insert(7);
-        Assert.assertTrue(tree.isBalanced());
+        Assert.assertFalse(tree.isBalanced());
         tree.insert(6);
         tree.insert(8);
         tree.insert(9);
@@ -29,4 +29,19 @@ public class TreeTest {
         Assert.assertFalse(tree.isBalanced());
     }
 
+    @Test
+    public void depth() {
+        Tree tree = new Tree();
+        tree.insert(5);
+        tree.insert(3);
+        tree.insert(2);
+        tree.insert(1);
+        tree.insert(4);
+        tree.insert(7);
+        tree.insert(6);
+        tree.insert(8);
+        tree.insert(9);
+        tree.insert(10);
+        Assert.assertEquals(5, tree.depth());
+    }
 }

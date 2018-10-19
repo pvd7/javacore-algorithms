@@ -14,36 +14,6 @@ public class Tree {
         boolean hasChildren() {
             return left != null || right != null;
         }
-
-        boolean hasLeftChild() {
-            return left != null;
-        }
-
-        boolean hasRightChild() {
-            return right != null;
-        }
-
-//        boolean hasLeftGrandChildren() {
-//            return hasLeftChild() && left.hasChildren();
-//        }
-
-//        boolean hasRightGrandChildren() {
-//            return hasRightChild() && right.hasChildren();
-//        }
-
-        /**
-         * Проверяет балансировку узла
-         * Считаем, что узел отбалансирован, если слева и справа есть потомки в первых двух поколениях
-         *
-         * @return
-         */
-        boolean isBalanced() {
-            if (left == null && right == null) return true;
-            if (left != null && right != null) return true;
-            if (left == null && !right.hasChildren()) return true;
-            if (right == null && !left.hasChildren()) return true;
-            return false;
-        }
     }
 
     private Node root;
@@ -169,23 +139,19 @@ public class Tree {
 
     private Node getMin(Node start) {
         if (start == null) throw new RuntimeException("start is null!");
+        Node node = start;
         while (true) {
-            if (start.left == null) {
-                return start;
-            } else {
-                start = start.left;
-            }
+            if (node.left == null) return node;
+            node = node.left;
         }
     }
 
     private Node getMax(Node start) {
         if (start == null) throw new RuntimeException("start is null!");
+        Node node = start;
         while (true) {
-            if (start.right == null) {
-                return start;
-            } else {
-                start = start.right;
-            }
+            if (node.right == null) return node;
+                node = node.right;
         }
     }
 
@@ -195,13 +161,11 @@ public class Tree {
 
     public int getMax() {
         if (isEmpty()) throw new RuntimeException("tree is empty!");
-        if (!root.hasChildren()) return root.id;
         return getMax(root).id;
     }
 
     public int getMin() {
         if (isEmpty()) throw new RuntimeException("tree is empty!");
-        if (!root.hasChildren()) return root.id;
         return getMin(root).id;
     }
 
@@ -209,10 +173,18 @@ public class Tree {
      * Проверяет балансировку узла
      *
      * @param node узел в дереве
-     * @return результат
+     * @return -1 дерево не сбалансировано, иначе вернет глубину дерева
      */
-    private boolean isBalanced(Node node) {
-        return (node == null) || (node.isBalanced() && isBalanced(node.left) && isBalanced(node.right));
+    private int isBalanced(Node node) {
+        if (node == null) return 0;
+
+        int left = isBalanced(node.left);
+        if (left == -1) return -1;
+
+        int right = isBalanced(node.right);
+        if (right == -1) return -1;
+
+        return Math.abs(left - right) > 1 ? -1 : Math.max(left, right) + 1;
     }
 
     /**
@@ -221,7 +193,26 @@ public class Tree {
      * @return результат
      */
     public boolean isBalanced() {
-        return (root != null) && isBalanced(root);
+        return (root != null) && (isBalanced(root) != -1);
+    }
+
+    /**
+     * Подсчитывает глубину поддерева
+     *
+     * @param node начальный узел поддерева
+     * @return глубина
+     */
+    private int depth(Node node) {
+        return (node == null) ? 0 : Math.max(depth(node.left), depth(node.right)) + 1;
+    }
+
+    /**
+     * Подсчитывает глубину дерева
+     *
+     * @return глубина
+     */
+    public int depth() {
+        return depth(root);
     }
 
 }
