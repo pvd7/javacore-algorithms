@@ -1,7 +1,5 @@
 package ru.javacore2.algorithm.lesson6.util;
 
-import javax.swing.tree.TreeNode;
-
 public class Tree {
 
     class Node {
@@ -11,6 +9,40 @@ public class Tree {
 
         Node(int id) {
             this.id = id;
+        }
+
+        boolean hasChildren() {
+            return left != null || right != null;
+        }
+
+        boolean hasLeftChild() {
+            return left != null;
+        }
+
+        boolean hasRightChild() {
+            return right != null;
+        }
+
+//        boolean hasLeftGrandChildren() {
+//            return hasLeftChild() && left.hasChildren();
+//        }
+
+//        boolean hasRightGrandChildren() {
+//            return hasRightChild() && right.hasChildren();
+//        }
+
+        /**
+         * Проверяет балансировку узла
+         * Считаем, что узел отбалансирован, если слева и справа есть потомки в первых двух поколениях
+         *
+         * @return
+         */
+        boolean isBalanced() {
+            if (left == null && right == null) return true;
+            if (left != null && right != null) return true;
+            if (left == null && !right.hasChildren()) return true;
+            if (right == null && !left.hasChildren()) return true;
+            return false;
         }
     }
 
@@ -43,6 +75,7 @@ public class Tree {
             }
         }
     }
+
     public boolean find(int id) {
         Node current = root;
         while (current.id != id) {
@@ -154,6 +187,41 @@ public class Tree {
                 start = start.right;
             }
         }
+    }
+
+    public boolean isEmpty() {
+        return root == null;
+    }
+
+    public int getMax() {
+        if (isEmpty()) throw new RuntimeException("tree is empty!");
+        if (!root.hasChildren()) return root.id;
+        return getMax(root).id;
+    }
+
+    public int getMin() {
+        if (isEmpty()) throw new RuntimeException("tree is empty!");
+        if (!root.hasChildren()) return root.id;
+        return getMin(root).id;
+    }
+
+    /**
+     * Проверяет балансировку узла
+     *
+     * @param node узел в дереве
+     * @return результат
+     */
+    private boolean isBalanced(Node node) {
+        return (node == null) || (node.isBalanced() && isBalanced(node.left) && isBalanced(node.right));
+    }
+
+    /**
+     * Проверяет балансировку дерева
+     *
+     * @return результат
+     */
+    public boolean isBalanced() {
+        return (root != null) && isBalanced(root);
     }
 
 }
