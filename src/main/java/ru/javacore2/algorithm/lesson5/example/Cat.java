@@ -3,6 +3,8 @@ package ru.javacore2.algorithm.lesson5.example;
 import java.util.Objects;
 
 public class Cat {
+
+    public int id;
     private int age;
     private String name;
 
@@ -10,15 +12,19 @@ public class Cat {
         this.age = age;
         this.name = name;
     }
+
     public int getAge() {
         return age;
     }
+
     public void setAge(int age) {
         this.age = age;
     }
+
     public String getName() {
         return name;
     }
+
     public void setName(String name) {
         this.name = name;
     }
@@ -36,4 +42,5 @@ public class Cat {
         return age == cat.age &&
                 Objects.equals(name, cat.name);
     }
+
 }
